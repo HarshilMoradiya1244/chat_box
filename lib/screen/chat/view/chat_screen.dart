@@ -4,6 +4,7 @@ import 'package:chat_box/screen/profile/model/profile_model.dart';
 import 'package:chat_box/utils/colors.dart';
 import 'package:chat_box/utils/firebase/firebase_authanticasion.dart';
 import 'package:chat_box/utils/firebase/firebasedb_helper.dart';
+import 'package:chat_box/utils/text_style.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -23,6 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         leading: profileModel.image != null
             ? CircleAvatar(
           radius: 30,
@@ -35,7 +37,7 @@ class _ChatScreenState extends State<ChatScreen> {
             style: const TextStyle(fontSize: 20),
           ),
         ),
-        title: Text("${profileModel.name}"),
+        title: Text("${profileModel.name}",style: txtLarge,),
         centerTitle: true,
       ),
       body: Stack(
@@ -134,7 +136,7 @@ class _ChatScreenState extends State<ChatScreen> {
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("${massageList[index].msg}"),
+                                Text("${massageList[index].msg}",style: txtMedium,),
                               ],
                             ),
                           ),

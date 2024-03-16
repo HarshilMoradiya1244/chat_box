@@ -81,7 +81,7 @@ class FireDbHelper {
       "id": model.id,
       "date": model.date,
       "time": model.time,
-      "timestamp": model.time,
+      "timestamp": Timestamp.now(),
     });
     await fireDb.collection("chat").doc(fProfile.docId!=null?fProfile.docId:"$myUid-${fProfile.uid}").set({
       'date1': [
