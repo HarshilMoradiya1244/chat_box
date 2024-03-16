@@ -5,6 +5,7 @@ import 'package:chat_box/screen/home/view/home_screen.dart';
 import 'package:chat_box/screen/login/view/login_screen.dart';
 import 'package:chat_box/screen/login/view/signup_screen.dart';
 import 'package:chat_box/screen/profile/view/profile_screen.dart';
+import 'package:chat_box/screen/settings/view/setting_screen.dart';
 import 'package:chat_box/screen/splash/view/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,4 +18,5 @@ Map<String,WidgetBuilder> app_routes = {
   'chat':(context) => const ChatScreen(),
   'contact':(context) => const ContactScreen(),
   'profile':(context) => const ProfileScreen(),
+  'setting':(context) => const SettingScreen(),
 };

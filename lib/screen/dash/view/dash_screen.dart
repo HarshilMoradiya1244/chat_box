@@ -39,14 +39,13 @@ class _DashScreenState extends State<DashScreen> {
                 return [
                   PopupMenuItem(
                     onTap: ()
-                      async {
-                        await FireAuthHelper.fireAuthHelper.signOut();
-                        Get.offAllNamed('signin');
+                       {
+                        Get.toNamed('setting');
                     },
                     child:Row(
                       children: [
-                        IconButton(onPressed: (){}, icon: const Icon(Icons.logout,color: Colors.white,)),
-                         Text("Logout",style: txtMedium,),
+                        IconButton(onPressed: (){}, icon: const Icon(Icons.settings,color: Colors.white,)),
+                         Text("Settings",style: txtMedium,),
                       ],
                     ),
                   ),

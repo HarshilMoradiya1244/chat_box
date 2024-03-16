@@ -57,4 +57,8 @@ class FireAuthHelper {
       return e.toString();
     }
   }
+
+  Future<void> deleteUser() async {
+    await user?.delete();
+  }
 }
