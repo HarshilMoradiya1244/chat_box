@@ -91,8 +91,10 @@ class _ChatScreenState extends State<ChatScreen> {
                                       FireDbHelper.fireDbHelper
                                           .deleteMessage(profileModel
                                           .docId!, massageList[index].docId!);
+                                      Get.back();
+
                                       }, icon: const Icon(Icons.delete_outline),
-                                    )
+                                    ),
                                   ]
                               );
                             }
