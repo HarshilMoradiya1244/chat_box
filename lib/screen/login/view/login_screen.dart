@@ -59,7 +59,7 @@ class _SignInScreenState extends State<SignInScreen> {
                           },
                           child: socialContainer("assets/images/google.png")),
                       socialContainer("assets/images/apple.png"),
-                      socialContainer("assets/images/facebook.png"),
+                      socialContainer("assets/images/guest.png"),
                     ],
                   ),
                   const SizedBox(

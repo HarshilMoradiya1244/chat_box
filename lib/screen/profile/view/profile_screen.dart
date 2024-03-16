@@ -1,10 +1,10 @@
 import 'package:chat_box/screen/profile/model/profile_model.dart';
+import 'package:chat_box/utils/firebase/firebasedb_helper.dart';
 import 'package:chat_box/screen/widget/custome_textfiled.dart';
 import 'package:chat_box/utils/firebase/firebase_authanticasion.dart';
-import 'package:chat_box/utils/firebase/firebasedb_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:flutter/material.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,31 +21,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
   TextEditingController txtAddress = TextEditingController();
   TextEditingController txtImage = TextEditingController();
 
-
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: const Text("Profile"),
-          centerTitle: true,
-        ),
         body: StreamBuilder(
-          stream: FireDbHelper.fireDbHelper.  getProfileData(),
-          builder:(context, snapshot) {
-            if(snapshot.hasError){
+          stream: FireDbHelper.fireDbHelper.getProfileData(),
+          builder: (context, snapshot) {
+            if (snapshot.hasError) {
               return Text("${snapshot.error}");
-            }
-            else if(snapshot.hasData){
-              DocumentSnapshot? ds=snapshot.data;
+            } else if (snapshot.hasData) {
+              DocumentSnapshot? ds = snapshot.data;
               Map? data = ds?.data() as Map?;
-              if(data!=null){
-
+              if (data != null) {
                 txtName.text = data['name'];
                 txtEmail.text = data['email'];
                 txtMobile.text = data['mobile'];
-                if(data['image']!=null)
-                {
+                if (data['image'] != null) {
                   txtImage.text = data['image'];
                 }
                 txtAddress.text = data['address'];
@@ -71,7 +63,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         label: "Mobile",
                         controller: txtMobile,
                       ),
-
                       CustomeTextFiled(
                         label: "Email",
                         controller: txtEmail,
@@ -95,7 +86,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             image: null,
                           );
                           FireDbHelper.fireDbHelper.addProfileData(p1);
-                          Get.offAllNamed('home');
+                          Get.offAllNamed('dash');
                         },
                         child: const Text("Save"),
                       ),
@@ -104,7 +95,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               );
             }
-            return const Center(child: CircularProgressIndicator(),);
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
           },
         ),
       ),

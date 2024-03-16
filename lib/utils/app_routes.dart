@@ -1,3 +1,4 @@
+import 'package:chat_box/screen/chat/view/chat_screen.dart';
 import 'package:chat_box/screen/contact/view/contact_screen.dart';
 import 'package:chat_box/screen/dash/view/dash_screen.dart';
 import 'package:chat_box/screen/home/view/home_screen.dart';
@@ -13,6 +14,7 @@ Map<String,WidgetBuilder> app_routes = {
   'signin':(context) => const SignInScreen(),
   'signup':(context) => const SignUpScreen(),
   'home':(context) => const HomeScreen(),
+  'chat':(context) => const ChatScreen(),
   'contact':(context) => const ContactScreen(),
   'profile':(context) => const ProfileScreen(),
 };
