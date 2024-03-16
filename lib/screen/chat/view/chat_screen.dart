@@ -1,5 +1,7 @@
+import 'package:chat_box/main.dart';
 import 'package:chat_box/screen/chat/model/chat_model.dart';
 import 'package:chat_box/screen/profile/model/profile_model.dart';
+import 'package:chat_box/utils/colors.dart';
 import 'package:chat_box/utils/firebase/firebase_authanticasion.dart';
 import 'package:chat_box/utils/firebase/firebasedb_helper.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -29,7 +31,8 @@ class _ChatScreenState extends State<ChatScreen> {
             : CircleAvatar(
           radius: 30,
           child: Text(
-            "${profileModel.name!.substring(0, 1)}",style: const TextStyle(fontSize: 20),
+            "${profileModel.name!.substring(0, 1)}",
+            style: const TextStyle(fontSize: 20),
           ),
         ),
         title: Text("${profileModel.name}"),
@@ -74,18 +77,65 @@ class _ChatScreenState extends State<ChatScreen> {
                       return Align(
                         alignment: massageList[index].id ==
                             FireAuthHelper.fireAuthHelper.user!.uid
-                            ? Alignment.centerRight
-                            : Alignment.centerLeft,
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              "${massageList[index].name}",
-                              style:
-                              TextStyle(fontWeight: FontWeight.bold),
+                            ? Alignment.bottomRight
+                            : Alignment.bottomLeft,
+                        child: GestureDetector(
+                          onLongPress: () {
+                            if (massageList[index].id ==
+                                FireAuthHelper.fireAuthHelper.user!.uid) {
+                              Get.defaultDialog(
+                                  content: Text("${massageList[index].msg}"),
+                                  title: 'Delete',
+                                  actions: [
+                                    IconButton(onPressed: () {
+                                      FireDbHelper.fireDbHelper
+                                          .deleteMessage(profileModel
+                                          .docId!, massageList[index].docId!);
+                                      }, icon: const Icon(Icons.delete_outline),
+                                    )
+                                  ]
+                              );
+                            }
+                          },
+                          child: Container(
+                            margin: const EdgeInsets.only(top: 10),
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: mainColor,
+                              borderRadius: BorderRadius.only(
+                                topLeft: const Radius.circular(5),
+                                topRight: const Radius.circular(5),
+                                bottomLeft: Radius.circular(
+                                    massageList[index].id ==
+                                        FireAuthHelper
+                                            .fireAuthHelper.user!.uid
+                                        ? 10
+                                        : 0),
+                                bottomRight: Radius.circular(
+                                    massageList[index].id ==
+                                        FireAuthHelper
+                                            .fireAuthHelper.user!.uid
+                                        ? 0
+                                        : 10),
+                              ),
                             ),
-                            Text("${massageList[index].msg}"),
-                          ],
+                            child: Column(
+                              crossAxisAlignment: massageList[index].id ==
+                                  FireAuthHelper
+                                      .fireAuthHelper.user!.uid
+                                  ? CrossAxisAlignment.end
+                                  : CrossAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Text(
+                                  "${massageList[index].name}",
+                                  style: const TextStyle(
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Text("${massageList[index].msg}"),
+                              ],
+                            ),
+                          ),
                         ),
                       );
                     },
@@ -126,9 +176,21 @@ class _ChatScreenState extends State<ChatScreen> {
                           msg: txtMsg.text,
                           timeStamp: "${Timestamp.now()}",
                           time:
-                          "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}",
+                          "${DateTime
+                              .now()
+                              .hour}:${DateTime
+                              .now()
+                              .minute}:${DateTime
+                              .now()
+                              .second}",
                           date:
-                          "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
+                          "${DateTime
+                              .now()
+                              .day}/${DateTime
+                              .now()
+                              .month}/${DateTime
+                              .now()
+                              .year}",
                         );
                         FireDbHelper.fireDbHelper.sendMessage(
                             model,
@@ -136,7 +198,7 @@ class _ChatScreenState extends State<ChatScreen> {
                             profileModel);
                         txtMsg.clear();
                       },
-                      icon: Icon(Icons.send),
+                      icon: const Icon(Icons.send),
                     ),
                   ],
                 ),
@@ -148,4 +210,3 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 }
-

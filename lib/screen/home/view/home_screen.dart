@@ -110,66 +110,6 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      drawer: Drawer(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 60),
-          child: StreamBuilder(
-            stream: FireDbHelper.fireDbHelper.getProfileData(),
-            builder: (context, snapshot) {
-              if (snapshot.hasError) {
-                return Text("${snapshot.error}");
-              } else if (snapshot.hasData) {
-                DocumentSnapshot ds = snapshot.data!;
-                Map m1 = ds.data() as Map;
-
-                return Column(
-                  children: [
-                    m1['image'] == null
-                        ? CircleAvatar(
-                            radius: 50,
-                            child: Text(
-                                "${m1['name']}".toUpperCase().substring(0, 1)),
-                          )
-                        : CircleAvatar(
-                            radius: 50,
-                            backgroundImage: NetworkImage("${m1['image']}"),
-                          ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Text(
-                      "${m1['name']}",
-                      style: txtLarge,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "${m1['bio']}",
-                      style: txtMedium,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "${m1['mobile']}",
-                      style: txtMedium,
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "${m1['email']}",
-                      style: txtMedium,
-                    ),
-                  ],
-                );
-              }
-              return const CircularProgressIndicator();
-            },
-          ),
-        ),
-      ),
     );
   }
 }
