@@ -100,22 +100,21 @@ class _SettingScreenState extends State<SettingScreen> {
             ),
             const Divider(),
             ListTile(
-              onTap: (){
+              onTap: () {
                 {
-                  Get.toNamed("profile");
+                   Get.toNamed("profile");
                 }
               },
-              leading:const Icon(Icons.person),
+              leading: const Icon(Icons.person),
               title: const Text("Profile Update"),
             ),
             const Divider(),
             ListTile(
-              onTap: ()async {
+              onTap: () async {
                 await FireAuthHelper.fireAuthHelper.signOut();
                 Get.offAllNamed('signin');
               },
-              leading:  const Icon(Icons.logout
-              ),
+              leading: const Icon(Icons.logout),
               title: const Text("LogOut"),
             ),
             const Divider(),
@@ -124,8 +123,7 @@ class _SettingScreenState extends State<SettingScreen> {
                 await FireAuthHelper.fireAuthHelper.deleteUser();
                 Get.offAllNamed("signin");
               },
-              leading: const Icon(Icons.account_circle_outlined
-              ),
+              leading: const Icon(Icons.account_circle_outlined),
               title: const Text("Delete Account"),
             ),
             const Divider(),
