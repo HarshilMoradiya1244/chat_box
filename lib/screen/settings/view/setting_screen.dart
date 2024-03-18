@@ -78,7 +78,7 @@ class _SettingScreenState extends State<SettingScreen> {
                               children: [
                                 Text(
                                   "${m1['name']}",
-                                  style: txtContact,
+                                  style: txtLarge,
                                 ),
                                 const SizedBox(
                                   height: 10,
