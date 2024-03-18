@@ -24,7 +24,6 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
         leading: profileModel.image != null
             ? CircleAvatar(
           radius: 30,
@@ -34,10 +33,10 @@ class _ChatScreenState extends State<ChatScreen> {
           radius: 30,
           child: Text(
             "${profileModel.name!.substring(0, 1)}",
-            style: const TextStyle(fontSize: 20),
+            style: const TextStyle(color: Colors.black87),
           ),
         ),
-        title: Text("${profileModel.name}",style: txtLarge,),
+        title: Text("${profileModel.name}"),
         centerTitle: true,
       ),
       body: Stack(
@@ -72,43 +71,48 @@ class _ChatScreenState extends State<ChatScreen> {
                   }
                 }
                 return Padding(
-                  padding: const EdgeInsets.all(8.0),
+                  padding: const EdgeInsets.only(
+                      left: 10, right: 10, bottom: 100),
                   child: ListView.builder(
+                    reverse: true,
                     itemCount: massageList.length,
                     itemBuilder: (context, index) {
                       return Align(
                         alignment: massageList[index].id ==
                             FireAuthHelper.fireAuthHelper.user!.uid
-                            ? Alignment.bottomRight
+                            ? Alignment.centerRight
                             : Alignment.bottomLeft,
                         child: GestureDetector(
                           onLongPress: () {
-                            if (massageList[index].id ==
-                                FireAuthHelper.fireAuthHelper.user!.uid) {
-                              Get.defaultDialog(
-                                  content: Text("${massageList[index].msg}"),
-                                  title: 'Delete',
-                                  actions: [
-                                    IconButton(onPressed: () {
-                                      FireDbHelper.fireDbHelper
-                                          .deleteMessage(profileModel
-                                          .docId!, massageList[index].docId!);
-                                      Get.back();
 
-                                      }, icon: const Icon(Icons.delete_outline),
+                            if(massageList[index].id! == FireAuthHelper.fireAuthHelper.user!.uid) {
+                              Get.defaultDialog(
+                                  content:
+                                  Text("${massageList[index].msg}"),
+                                  actions: [
+                                    IconButton(
+                                      onPressed: () {
+                                        FireDbHelper.fireDbHelper
+                                            .deleteMessage(
+                                            profileModel.docId!,
+                                            massageList[index].docId!);
+                                        Get.back();
+                                      },
+                                      icon: const Icon(Icons.delete),
                                     ),
-                                  ]
-                              );
+                                  ],
+                                  title: "Delete");
                             }
                           },
                           child: Container(
-                            margin: const EdgeInsets.only(top: 10),
                             padding: const EdgeInsets.all(10),
+                            margin: const EdgeInsets.only(top: 10),
                             decoration: BoxDecoration(
-                              color: mainColor,
+                              color: Colors.black12,
+                              border: Border.all(color: Colors.black),
                               borderRadius: BorderRadius.only(
-                                topLeft: const Radius.circular(5),
-                                topRight: const Radius.circular(5),
+                                topLeft: const Radius.circular(10),
+                                topRight: const Radius.circular(10),
                                 bottomLeft: Radius.circular(
                                     massageList[index].id ==
                                         FireAuthHelper
@@ -124,19 +128,19 @@ class _ChatScreenState extends State<ChatScreen> {
                               ),
                             ),
                             child: Column(
+                              mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: massageList[index].id ==
                                   FireAuthHelper
                                       .fireAuthHelper.user!.uid
                                   ? CrossAxisAlignment.end
                                   : CrossAxisAlignment.start,
-                              mainAxisSize: MainAxisSize.min,
                               children: [
                                 Text(
                                   "${massageList[index].name}",
                                   style: const TextStyle(
                                       fontWeight: FontWeight.bold),
                                 ),
-                                Text("${massageList[index].msg}",style: txtMedium,),
+                                Text("${massageList[index].msg}"),
                               ],
                             ),
                           ),
@@ -178,23 +182,10 @@ class _ChatScreenState extends State<ChatScreen> {
                           id: FireAuthHelper.fireAuthHelper.user!.uid,
                           name: FireDbHelper.fireDbHelper.myProfileData.name,
                           msg: txtMsg.text,
-                          timeStamp: "${Timestamp.now()}",
                           time:
-                          "${DateTime
-                              .now()
-                              .hour}:${DateTime
-                              .now()
-                              .minute}:${DateTime
-                              .now()
-                              .second}",
+                          "${DateTime.now().hour}:${DateTime.now().minute}:${DateTime.now().second}",
                           date:
-                          "${DateTime
-                              .now()
-                              .day}/${DateTime
-                              .now()
-                              .month}/${DateTime
-                              .now()
-                              .year}",
+                          "${DateTime.now().day}/${DateTime.now().month}/${DateTime.now().year}",
                         );
                         FireDbHelper.fireDbHelper.sendMessage(
                             model,

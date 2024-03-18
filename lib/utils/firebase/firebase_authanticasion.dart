@@ -3,6 +3,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class FireAuthHelper {
   static FireAuthHelper fireAuthHelper = FireAuthHelper._();
+
   FireAuthHelper._();
 
   FirebaseAuth auth = FirebaseAuth.instance;
@@ -48,7 +49,8 @@ class FireAuthHelper {
 
     GoogleSignInAuthentication? gAuth = await account?.authentication;
 
-    var crd = GoogleAuthProvider.credential(accessToken: gAuth?.accessToken,idToken: gAuth?.idToken);
+    var crd = GoogleAuthProvider.credential(
+        accessToken: gAuth?.accessToken, idToken: gAuth?.idToken);
 
     try {
       await auth.signInWithCredential(crd);
@@ -60,5 +62,15 @@ class FireAuthHelper {
 
   Future<void> deleteUser() async {
     await user?.delete();
+  }
+
+  Future<String> guestLogin() async {
+    var userCredential = await auth.signInAnonymously();
+    try {
+      await auth.signInAnonymously();
+      return "success";
+    } on FirebaseAuthException catch (e) {
+      return e.toString();
+    }
   }
 }

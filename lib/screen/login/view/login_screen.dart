@@ -52,14 +52,23 @@ class _SignInScreenState extends State<SignInScreen> {
                             FireAuthHelper.fireAuthHelper.checkUser();
                             String msg = await FireAuthHelper.fireAuthHelper
                                 .googleSignIn();
-                            Get.snackbar(msg, "Login success fully");
+                            Get.snackbar(msg, "Login Success Fully");
                             if (msg == "success") {
                               Get.offAllNamed('profile');
                             }
                           },
                           child: socialContainer("assets/images/google.png")),
                       socialContainer("assets/images/apple.png"),
-                      socialContainer("assets/images/guest.png"),
+                      InkWell(
+                        onTap: () async {
+                          FireAuthHelper.fireAuthHelper.checkUser();
+                          String msg = await FireAuthHelper.fireAuthHelper.guestLogin();
+                          Get.snackbar(msg, "Login Success Fully");
+                          if(msg == "success"){
+                            Get.offAllNamed('profile');
+                          }
+                        },
+                          child: socialContainer("assets/images/guest.png")),
                     ],
                   ),
                   const SizedBox(
