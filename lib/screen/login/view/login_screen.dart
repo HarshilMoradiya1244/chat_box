@@ -49,11 +49,11 @@ class _SignInScreenState extends State<SignInScreen> {
                     children: [
                       InkWell(
                           onTap: () async {
-                            FireAuthHelper.fireAuthHelper.checkUser();
                             String msg = await FireAuthHelper.fireAuthHelper
                                 .googleSignIn();
                             Get.snackbar(msg, "Login Success Fully");
                             if (msg == "success") {
+                              FireAuthHelper.fireAuthHelper.checkUser();
                               Get.offAllNamed('profile');
                             }
                           },
@@ -61,10 +61,11 @@ class _SignInScreenState extends State<SignInScreen> {
                       socialContainer("assets/images/apple.png"),
                       InkWell(
                         onTap: () async {
-                          FireAuthHelper.fireAuthHelper.checkUser();
+
                           String msg = await FireAuthHelper.fireAuthHelper.guestLogin();
                           Get.snackbar(msg, "Login Success Fully");
                           if(msg == "success"){
+                            FireAuthHelper.fireAuthHelper.checkUser();
                             Get.offAllNamed('profile');
                           }
                         },
