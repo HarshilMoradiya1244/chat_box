@@ -123,4 +123,8 @@ class FireDbHelper {
         .delete();
   }
 
+  Future<void> deleteUser(String uid) async {
+    await fireDb.collection("User").doc(uid).delete();
+  }
+
 }

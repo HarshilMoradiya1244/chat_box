@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:chat_box/screen/profile/controller/profile_controller.dart';
 import 'package:chat_box/screen/profile/model/profile_model.dart';
 import 'package:chat_box/utils/firebase/firebasedb_helper.dart';
@@ -128,6 +127,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               image: controller.imagePath.value!=null?path:image,);
                           FireDbHelper.fireDbHelper.addProfileData(p1);
                           Get.offAllNamed('dash');
+                          controller.imagePath.value = null;
                         },
                         child: const Text("Save"),
                       ),

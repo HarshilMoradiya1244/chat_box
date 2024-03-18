@@ -42,11 +42,11 @@ class _IntroScreenState extends State<IntroScreen> {
           onDone: () {
             ShareHelper shr = ShareHelper();
             shr.setIntroStatus();
-            Navigator.pushReplacementNamed(context, 'dash');
+            Navigator.pushReplacementNamed(context, 'signin');
           },
-          done: Text("Done"),
+          done: const Text("Done"),
           showNextButton: true,
-          next: Text("Next"),
+          next: const Text("Next"),
         ),
       ),
     );

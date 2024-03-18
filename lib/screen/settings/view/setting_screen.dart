@@ -78,7 +78,6 @@ class _SettingScreenState extends State<SettingScreen> {
                               children: [
                                 Text(
                                   "${m1['name']}",
-                                  style: txtLarge,
                                 ),
                                 const SizedBox(
                                   height: 10,
@@ -120,6 +119,7 @@ class _SettingScreenState extends State<SettingScreen> {
             const Divider(),
             ListTile(
               onTap: () async {
+                await FireDbHelper.fireDbHelper.deleteUser(FireAuthHelper.fireAuthHelper.user!.uid);
                 await FireAuthHelper.fireAuthHelper.deleteUser();
                 Get.offAllNamed("signin");
               },
