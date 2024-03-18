@@ -1,4 +1,4 @@
-import 'package:chat_box/utils/theme/share_helper.dart';
+import 'package:chat_box/utils/shared_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:introduction_screen/introduction_screen.dart';
 

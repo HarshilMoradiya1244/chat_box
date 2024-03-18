@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:chat_box/utils/firebase/firebase_authanticasion.dart';
-import 'package:chat_box/utils/theme/share_helper.dart';
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
