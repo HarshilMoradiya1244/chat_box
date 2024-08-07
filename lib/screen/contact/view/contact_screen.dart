@@ -60,7 +60,9 @@ class _ContactScreenState extends State<ContactScreen> {
                       : CircleAvatar(
                     radius: 30,
                     child: Text(
-                      "${contactData[index].name!.substring(0, 1)}",style: const TextStyle(fontSize: 20),),
+                      "${contactData[index].name != null && contactData[index].name!.isNotEmpty
+                          ? contactData[index].name!.substring(0, 1)
+                          : 'N'}",style: const TextStyle(fontSize: 20),),
                   ),
                   title: Text("${contactData[index].name}",),
                   subtitle: Text("${contactData[index].mobile}",style: txtSmall,),
