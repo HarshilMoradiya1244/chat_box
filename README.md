@@ -31,7 +31,3 @@ Screen Shot :
 
 </p>
 
-
-Video:
-
-https://github.com/HarshilMoradiya1244/quotes_app_getx/assets/142592789/688731de-a8ff-4a87-9c2f-0f978c807a84
