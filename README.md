@@ -15,8 +15,29 @@ For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
 
-Screen Shot :
+# ChatApp [(Source Code)](https://github.com/HarshilMoradiya1244/chat_box/tree/main/lib)
 
+A feature-rich chat application built using **Flutter** and **Firebase**. This app supports real-time messaging, Google authentication, mobile number login, and email login. Users can send messages to others within the app, edit and delete their messages, and see message read statuses with blue ticks. It also includes customizable themes, and the ability to view user details in the app's drawer.
+
+## Features
+
+- **Authentication**:
+  - Google login
+  - Anonymous (Guest) login
+  - Email ID login
+ 
+  
+- **Real-time Messaging**:
+  - Send and receive messages with Firebase Firestore
+  - Message sent
+  - Message received
+  -  delete messages
+ 
+  **Additional Functionalities**:
+  - Smooth user experience with GetX for state management
+  - Firebase Firestore for real-time database management
+
+Screen Shot :
 
 <p>
   <img src="https://github.com/HarshilMoradiya1244/chat_box/assets/142592789/9c11478f-5ecf-4ad2-9823-469a40d0d301",height="1000"width="200">
