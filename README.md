@@ -17,7 +17,7 @@ samples, guidance on mobile development, and a full API reference.
 
 # ChatApp [(Source Code)](https://github.com/HarshilMoradiya1244/chat_box/tree/main/lib)
 
-A feature-rich chat application built using **Flutter** and **Firebase**. This app supports real-time messaging, Google authentication, mobile number login, and email login. Users can send messages to others within the app, edit and delete their messages, and see message read statuses with blue ticks. It also includes customizable themes, and the ability to view user details in the app's drawer.
+A feature-rich chat application built using **Flutter** and **Firebase**. This app supports real-time messaging, Google authentication,Anonymous (Guest) login, and email login. Users can send messages to others within the app, delete their messages. View User Detail On Profile Screen.
 
 ## Features
 
