@@ -31,13 +31,28 @@ A feature-rich chat application built using **Flutter** and **Firebase**. This a
   - Send and receive messages with Firebase Firestore
   - Message sent
   - Message received
-  -  delete messages
+  - delete messages
  
   **Additional Functionalities**:
   - Smooth user experience with GetX for state management
   - Firebase Firestore for real-time database management
+ 
+   ## Configuration
 
-Screen Shot :
+    Set up **Firebase**:
+   - Create a Firebase project at [Firebase Console](https://console.firebase.google.com/).
+   - Enable **Firebase Authentication** for Google,Anonymous (Guest) , and email sign-in.
+   - Set up **Firebase Firestore** for real-time messaging.
+   - Download and include the `google-services.json` file in the `android/app` directory.
+
+## Dependencies
+
+- **Flutter**: Latest stable version
+- **Firebase Authentication**
+- **Firebase Firestore**
+- **GetX**: For state management and dependency injection
+
+## ScreenShorts
 
 <p>
   <img src="https://github.com/HarshilMoradiya1244/chat_box/assets/142592789/9c11478f-5ecf-4ad2-9823-469a40d0d301",height="1000"width="200">
